@@ -1,0 +1,140 @@
+/* CSS réalissé selon le modèle "Mobile First" */
+
+body {
+    font-family: 'Bree Serif', serif;
+    background-color: #f1c6d3;
+    color: white;
+}
+
+/* Header + nav du header  */
+
+header {
+    background-color: #bf92b2;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    border-bottom: 1px solid white;
+}
+
+header h1 {
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    align-self: center;
+    margin: 0rem 1rem;
+    color: white;
+}
+
+nav {
+    text-align: center;
+    margin-top: -0.5rem;
+    margin-bottom: 2rem;
+}
+
+nav a {
+    background-color: #bf92b2;
+    color: white;
+    font-size: 0.7rem;
+    letter-spacing: 0.1rem;
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 0.4rem;
+}
+
+nav a:hover {
+    background-color: white;
+    color: #bf92b2;
+    text-decoration: underline;
+}
+
+main {
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Page listant tous pokemons (pokemons.tpl.php) + CSS de la page des pokemons selon leur type ici également car même container */
+
+#container-pokemons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+#container-pokemons a:hover {
+    cursor: pointer;
+}
+
+.article-pokemon {
+    background-color: #bf92b2;
+    border-radius: 15px;
+    padding: 1rem 0rem;
+}
+
+.article-pokemon a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Page de détails d'un pokemon (pokemon.tpl.php) */
+
+#container-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#container-title h2 {
+    font-size: 1.2rem;
+}
+
+#container-title ul {
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.5rem;
+}
+
+#container-title li {
+    margin-left: 0.5rem;
+}
+
+#container-detail {
+    background-color: #bf92b2;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+#stats {
+    font-size: 1rem;
+    margin-left: 1rem;
+    text-align: left;
+}
+
+/* Page listant tous les types (types.tpl.php) */
+
+.types-list {
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 25%);
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.types-list a {
+    text-decoration: none;
+    color: white;
+}
+
+.types-list a:hover {
+    text-decoration: underline;
+    color: white;
+}
