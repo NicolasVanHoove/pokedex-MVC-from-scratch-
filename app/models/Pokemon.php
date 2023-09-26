@@ -19,8 +19,7 @@ class Pokemon extends CoreModel
     public function find($id)
     {
         // 1. se connecter à la BDD
-        // on a besoin de la classe Database
-        //require_once __DIR__ . '/../utils/Database.php';
+        // J'ai besoin de la classe Database et de sa méthode static getPDO()
         // on peut utiliser cette classe pour établir la connexion
         $pdo = Database::getPDO();
 
@@ -34,7 +33,7 @@ class Pokemon extends CoreModel
         //* fetchObject() fonctionne comme fetchAll(PDO::FETCH_CLASS) mais pour un seul objet (contrairement à un tableau d'objets pour fetchAll)
         $pokemon = $stmt->fetchObject('\app\models\Pokemon');
 
-        // 5. on retourne le produit récupéré
+        // 5. retourne le pokemon récupéré
         return $pokemon;
     }
 
@@ -42,8 +41,7 @@ class Pokemon extends CoreModel
     public function findAll()
     {
         // 1. se connecter à la BDD
-        // on a besoin de la classe Database
-        //require_once __DIR__ . '/../utils/Database.php';
+        // J'ai besoin de la classe Database et de sa méthode static getPDO()
         // on peut utiliser cette classe pour établir la connexion
         $pdo = Database::getPDO();
 
@@ -54,7 +52,7 @@ class Pokemon extends CoreModel
         $stmt = $pdo->query($sql);
 
         // 4. récupérer les résultats
-        //* PDO::FETCH_CLASS permet de récupérer un tableau contenant des objets de la classe Brand (qui seront automatiquement instanciés par PDO)
+        //* PDO::FETCH_CLASS permet de récupérer un tableau contenant des objets de la classe Pokemon (qui seront automatiquement instanciés par PDO)
         $pokemons = $stmt->fetchAll(PDO::FETCH_CLASS, '\app\models\Pokemon');
 
         // 5. les retourner
@@ -63,21 +61,21 @@ class Pokemon extends CoreModel
 
     public function findByType($id)
     {
-        // On joint la table de pivot "pokemon_type" afin de pouvoir filtrer sur les ID de type
+        // Je joint la table de pivot "pokemon_type" afin de pouvoir filtrer sur les ID de type
         $sql = "SELECT *
                 FROM `pokemon` 
                 INNER JOIN `pokemon_type` ON `pokemon_type`.`pokemon_number` = `pokemon`.`number`
                 WHERE `pokemon_type`.`type_id` = {$id}
                 ORDER BY `pokemon`.`number`";
 
-        // On récupère la connexion à la BDD
+        // Je récupère la connexion à la BDD
         $pdo = Database::getPDO();
 
-        // On exécute la requête avec query car on souhaite pouvoir accéder
+        // J'exécute la requête avec query car je souhaite pouvoir accéder
         // aux données retournées par la requête
         $pdoStatement = $pdo->query($sql);
 
-        // On récupère tous les résultats avec "fetchAll" et on met transmet les données récupérées à une instance du model courant (Pokemon)
+        // Je récupère tous les résultats avec "fetchAll" et je transmet les données récupérées à une instance du model courant (Pokemon)
         $pokemons = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
 
         return $pokemons;
@@ -85,21 +83,21 @@ class Pokemon extends CoreModel
 
     public function getTypes()
     {
-        // On cherche dans la table de pivot "pokemon_type" les entrées qui correspondent au numéro fourni
-        // puis on joint cette table à la table "type" dont on récupère les champs
+        // Je cherche dans la table de pivot "pokemon_type" les entrées qui correspondent au numéro fourni
+        // puis je joint cette table à la table "type" dont je récupère les champs
         $sql = "SELECT `type`.*
                 FROM `pokemon_type`
                 INNER JOIN `type` ON `type`.`id` = `pokemon_type`.`type_id`
                 WHERE `pokemon_type`.`pokemon_number` = {$this->getNumber()}";
 
-        // On récupère la connexion à la BDD
+        // Je récupère la connexion à la BDD
         $pdo = Database::getPDO();
 
-        // On exécute la requête avec query car on souhaite pouvoir accéder
+        // J'exécute la requête avec query car je souhaite pouvoir accéder
         // aux données retournées par la requête
         $pdoStatement = $pdo->query($sql);
 
-        // On récupère le résultat  et on instancie la classe Type avec les infos récupérées
+        // Je récupère le résultat  et j'instancie la classe Type avec les infos récupérées
         $types = $pdoStatement->fetchAll(PDO::FETCH_CLASS, Type::class);
 
         return $types;

@@ -2,9 +2,10 @@
 
 namespace app\models;
 
+// Création de la classe mère, il n'y a que l'id qui est commun aux deux autres Model. 
 class CoreModel
 {
-    // on veut que les propriétés soient accessibles depuis les enfants -> visibilité protected
+    // Je veux que les propriétés soient accessibles depuis les enfants -> visibilité protected
     protected $id;
 
     /**

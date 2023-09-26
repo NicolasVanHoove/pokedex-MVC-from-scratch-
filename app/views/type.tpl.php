@@ -1,3 +1,4 @@
+
 <section id="container-pokemons">
     <?php foreach ($viewData['type'] as $type) : ?>
         <article class="article-pokemon">
